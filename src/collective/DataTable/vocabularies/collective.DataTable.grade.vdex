@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex language="en" orderSignificant="true" xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0">
+    <vocabIdentifier>collective_DataTable_grade</vocabIdentifier>
+    <term>
+        <termIdentifier>g1</termIdentifier>
+        <caption>
+            <langstring language="en">First Grade</langstring>
+            <langstring language="da">Første klasse</langstring>
+            <langstring language="bn">প্রথম গ্রেড</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>g2</termIdentifier>
+        <caption>
+            <langstring language="en">Second Grade</langstring>
+            <langstring language="da">Anden klasse</langstring>
+            <langstring language="bn">দ্বিতীয় গ্রেড</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>g3</termIdentifier>
+        <caption>
+            <langstring language="en">Third Grade</langstring>
+            <langstring language="da">Tredje</langstring>
+            <langstring language="bn">তৃতীয় গ্রেড</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>g4</termIdentifier>
+        <caption>
+            <langstring language="en">Fourth Grade</langstring>
+            <langstring language="da">Fjerde klasse</langstring>
+            <langstring language="bn">চতুর্থ গ্রেড</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>g5</termIdentifier>
+        <caption>
+            <langstring language="en">Fifth Grade</langstring>
+            <langstring language="da">Femte klasse</langstring>
+            <langstring language="bn">পঞ্চম গ্রেড</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>g6</termIdentifier>
+        <caption>
+            <langstring language="en">Sixth Grade</langstring>
+            <langstring language="da">Sjette klasse</langstring>
+            <langstring language="bn">ষষ্ঠ গ্রেড</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>g7</termIdentifier>
+        <caption>
+            <langstring language="en">Seventh Grade</langstring>
+            <langstring language="da">Syvende klasse</langstring>
+            <langstring language="bn">সপ্তম গ্রেড</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>g8</termIdentifier>
+        <caption>
+            <langstring language="en">Eighth Grade</langstring>
+            <langstring language="da">Eightha klasse</langstring>
+            <langstring language="bn">অষ্টম গ্রেড</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>g9</termIdentifier>
+        <caption>
+            <langstring language="en">Ninth Grade</langstring>
+            <langstring language="da">Niende klasse</langstring>
+            <langstring language="bn">নবম গ্রেড</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>g10</termIdentifier>
+        <caption>
+            <langstring language="en">Tenth Grade</langstring>
+            <langstring language="da">Tiende klasse</langstring>
+            <langstring language="bn">দশম গ্রেড</langstring>
+        </caption>
+    </term>
+</vdex>

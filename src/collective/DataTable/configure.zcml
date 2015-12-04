@@ -1,0 +1,55 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:vdex="http://namespaces.zope.org/vdex"
+    i18n_domain="collective.DataTable">
+
+    <includeDependencies package="." />
+
+    <i18n:registerTranslations directory="locales" />
+
+    <include package="collective.vdexvocabulary" file="meta.zcml" />
+    <include package="collective.vdexvocabulary" />
+    <vdex:vocabulary directory="vocabularies" />
+
+    <include package=".browser" />
+    <include  file="events.zcml" />
+    <include  file="validators.zcml" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.DataTable"
+      directory="profiles/default"
+      description="Installs the collective.DataTable add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="collective.DataTable-postInstall"
+      title="collective.DataTable post_install import step"
+      description="Post install import step from collective.DataTable"
+      handler=".setuphandlers.post_install">
+  </genericsetup:importStep>
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.DataTable"
+      directory="profiles/uninstall"
+      description="Uninstalls the collective.DataTable add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="collective.DataTable-uninstall"
+      title="collective.DataTable uninstall import step"
+      description="Import step run during ininstalling collective.DataTable"
+      handler=".setuphandlers.uninstall">
+  </genericsetup:importStep>
+  <adapter name="book_stock" factory=".contenttypes.book.interface.book_stock" />
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="collective.DataTable-hiddenprofiles" />
+
+</configure>

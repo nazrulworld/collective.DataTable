@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+
+  <index name="grade" meta_type="FieldIndex">
+    <indexed_attr value="grade"/>
+  </index>
+  <column value="grade"/>
+
+  <index name="roll_number" meta_type="FieldIndex">
+    <indexed_attr value="roll_number"/>
+  </index>
+  <column value="roll_number"/>
+  <!-- Indexers -->
+  <index name="book_stock" meta_type="FieldIndex">
+    <indexed_attr value="book_stock"/>
+  </index>
+  <column value="book_stock"/>
+
+</object>

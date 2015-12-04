@@ -1,0 +1,5 @@
+====================
+collective.DataTable
+====================
+
+User documentation

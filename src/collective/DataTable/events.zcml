@@ -1,0 +1,17 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five">
+
+  <subscriber
+    for=".contenttypes.book_loan.IBookLoan zope.lifecycleevent.interfaces.IObjectAddedEvent"
+    handler=".events.collective_datatable_book_loan_created"
+    />
+  <subscriber
+    for=".contenttypes.book_loan.IBookLoan zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    handler=".events.collective_datatable_book_loan_updated"
+    />
+  <subscriber
+    for=".contenttypes.book_loan.IBookLoan zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+    handler=".events.collective_datatable_book_loan_removed"
+    />
+
+</configure>

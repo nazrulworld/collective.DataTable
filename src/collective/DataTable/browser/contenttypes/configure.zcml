@@ -1,0 +1,203 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.DataTable">
+  <!-- collective.DataTable.School content type Start -->
+  <browser:page
+    for="collective.DataTable.contenttypes.school.ISchool"
+    name="edit"
+    class=".school.SchoolEditView"
+    permission="cmf.ModifyPortalContent"
+  />
+  <!-- Standard view -->
+  <browser:page
+        for="collective.DataTable.contenttypes.school.ISchool"
+        name="view"
+        class=".school.SchoolView"
+        permission="zope2.View"
+  />
+
+  <adapter
+    for="Products.CMFCore.interfaces.IFolderish
+         collective.DataTable.interfaces.ICollectiveDataTableLayer
+         zope.publisher.interfaces.browser.IDefaultBrowserLayer
+         plone.dexterity.interfaces.IDexterityFTI"
+
+    provides="zope.publisher.interfaces.browser.IBrowserPage"
+    factory=".school.SchoolAddView"
+    name="collective.DataTable.School"
+  />
+  <class class=".school.SchoolAddView">
+    <require
+      permission="cmf.AddPortalContent"
+      interface="zope.publisher.interfaces.browser.IBrowserPage"
+    />
+  </class>
+  <!-- collective.DataTable.School content type End -->
+
+  <!-- collective.DataTable.Student content type Start -->
+  <browser:page
+    for="collective.DataTable.contenttypes.student.IStudent"
+    name="edit"
+    class=".student.StudentEditView"
+    permission="cmf.ModifyPortalContent"
+  />
+  <!-- Standard view -->
+  <browser:page
+        for="collective.DataTable.contenttypes.student.IStudent"
+        name="view"
+        class=".student.StudentView"
+        permission="zope2.View"
+  />
+
+  <adapter
+    for="Products.CMFCore.interfaces.IFolderish
+         collective.DataTable.interfaces.ICollectiveDataTableLayer
+         zope.publisher.interfaces.browser.IDefaultBrowserLayer
+         plone.dexterity.interfaces.IDexterityFTI"
+
+    provides="zope.publisher.interfaces.browser.IBrowserPage"
+    factory=".student.StudentAddView"
+    name="collective.DataTable.Student"
+  />
+  <class class=".student.StudentAddView">
+    <require
+      permission="cmf.AddPortalContent"
+      interface="zope.publisher.interfaces.browser.IBrowserPage"
+    />
+  </class>
+  <!-- collective.DataTable.Student content type End -->
+
+  <!-- collective.DataTable.Library content type Start -->
+  <browser:page
+    for="collective.DataTable.contenttypes.library.ILibrary"
+    name="edit"
+    class=".library.LibraryEditView"
+    permission="cmf.ModifyPortalContent"
+  />
+  <!-- Standard view -->
+  <browser:page
+        for="collective.DataTable.contenttypes.library.ILibrary"
+        name="view"
+        class=".library.LibraryView"
+        permission="zope2.View"
+  />
+
+  <adapter
+    for="Products.CMFCore.interfaces.IFolderish
+         collective.DataTable.interfaces.ICollectiveDataTableLayer
+         zope.publisher.interfaces.browser.IDefaultBrowserLayer
+         plone.dexterity.interfaces.IDexterityFTI"
+
+    provides="zope.publisher.interfaces.browser.IBrowserPage"
+    factory=".library.LibraryAddView"
+    name="collective.DataTable.Library"
+  />
+  <class class=".library.LibraryAddView">
+    <require
+      permission="cmf.AddPortalContent"
+      interface="zope.publisher.interfaces.browser.IBrowserPage"
+    />
+  </class>
+  <!-- collective.DataTable.Library content type End -->
+
+  <!-- collective.DataTable.Book content type Start -->
+  <browser:page
+    for="collective.DataTable.contenttypes.book.IBook"
+    name="edit"
+    class=".book.BookEditView"
+    permission="cmf.ModifyPortalContent"
+  />
+  <!-- Standard view -->
+  <browser:page
+        for="collective.DataTable.contenttypes.book.IBook"
+        name="view"
+        class=".book.BookView"
+        permission="zope2.View"
+  />
+
+  <adapter
+    for="Products.CMFCore.interfaces.IFolderish
+         collective.DataTable.interfaces.ICollectiveDataTableLayer
+         zope.publisher.interfaces.browser.IDefaultBrowserLayer
+         plone.dexterity.interfaces.IDexterityFTI"
+
+    provides="zope.publisher.interfaces.browser.IBrowserPage"
+    factory=".book.BookAddView"
+    name="collective.DataTable.Book"
+  />
+  <class class=".book.BookAddView">
+    <require
+      permission="cmf.AddPortalContent"
+      interface="zope.publisher.interfaces.browser.IBrowserPage"
+    />
+  </class>
+  <!-- collective.DataTable.Book content type End -->
+
+  <!-- collective.DataTable.BookLoan content type Start -->
+  <browser:page
+    for="collective.DataTable.contenttypes.book_loan.IBookLoan"
+    name="edit"
+    class=".book_loan.BookLoanEditView"
+    permission="cmf.ModifyPortalContent"
+  />
+  <!-- Standard view -->
+  <browser:page
+        for="collective.DataTable.contenttypes.book_loan.IBookLoan"
+        name="view"
+        class=".book_loan.BookLoanView"
+        permission="zope2.View"
+  />
+
+  <adapter
+    for="Products.CMFCore.interfaces.IFolderish
+         collective.DataTable.interfaces.ICollectiveDataTableLayer
+         zope.publisher.interfaces.browser.IDefaultBrowserLayer
+         plone.dexterity.interfaces.IDexterityFTI"
+
+    provides="zope.publisher.interfaces.browser.IBrowserPage"
+    factory=".book_loan.BookLoanAddView"
+    name="collective.DataTable.BookLoan"
+  />
+  <class class=".book_loan.BookLoanAddView">
+    <require
+      permission="cmf.AddPortalContent"
+      interface="zope.publisher.interfaces.browser.IBrowserPage"
+    />
+  </class>
+  <!-- collective.DataTable.BookLoan content type End -->
+
+  <!-- collective.DataTable.BookReview content type Start -->
+  <browser:page
+    for="collective.DataTable.contenttypes.book_review.IBookReview"
+    name="edit"
+    class=".book_review.BookReviewEditView"
+    permission="cmf.ModifyPortalContent"
+  />
+  <!-- Standard view -->
+  <browser:page
+        for="collective.DataTable.contenttypes.book_review.IBookReview"
+        name="view"
+        class=".book_review.BookReviewView"
+        permission="zope2.View"
+  />
+
+  <adapter
+    for="Products.CMFCore.interfaces.IFolderish
+         collective.DataTable.interfaces.ICollectiveDataTableLayer
+         zope.publisher.interfaces.browser.IDefaultBrowserLayer
+         plone.dexterity.interfaces.IDexterityFTI"
+
+    provides="zope.publisher.interfaces.browser.IBrowserPage"
+    factory=".book_review.BookReviewAddView"
+    name="collective.DataTable.BookReview"
+  />
+  <class class=".book_review.BookReviewAddView">
+    <require
+      permission="cmf.AddPortalContent"
+      interface="zope.publisher.interfaces.browser.IBrowserPage"
+    />
+  </class>
+  <!-- collective.DataTable.BookReview content type End -->
+</configure>

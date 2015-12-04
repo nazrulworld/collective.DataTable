@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex language="en" orderSignificant="true" xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0">
+    <vocabIdentifier>collective_DataTable_loan_status</vocabIdentifier>
+    <term>
+        <termIdentifier>running</termIdentifier>
+        <caption>
+            <langstring language="en">Running</langstring>
+            <langstring language="da">Løb</langstring>
+            <langstring language="bn">চলমান</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>delayed</termIdentifier>
+        <caption>
+            <langstring language="en">Delayed</langstring>
+            <langstring language="da">Forsinket</langstring>
+            <langstring language="bn">বিলম্বিত </langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>returned</termIdentifier>
+        <caption>
+            <langstring language="en">Returned</langstring>
+            <langstring language="da">Returneret</langstring>
+            <langstring language="bn">জমাক্রেত</langstring>
+        </caption>
+    </term>
+</vdex>

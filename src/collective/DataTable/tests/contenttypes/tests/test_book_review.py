@@ -21,7 +21,7 @@ from collective.DataTable.contenttypes.book_review import IBookReview
 from collective.DataTable.testing import (COLLECTIVE_DATATABLE_INTEGRATION_TESTING,
                                           COLLECTIVE_DATATABLE_FUNCTIONAL_TESTING)
 from collective.DataTable.testing import CollectiveDataTableBrowserMixin
-from collective.DataTable.testing import (
+from collective.DataTable.constrains import (
     CONTENT_TYPE_SCHOOL,
     CONTENT_TYPE_BOOK,
     CONTENT_TYPE_LIBRARY,
@@ -66,7 +66,7 @@ def init_fixture(self, commit=False):
     self.book.isbn = safe_unicode('98-999-99-9999')
     self.book.author = safe_unicode('Test Author')
     self.book.publisher = safe_unicode('Test Publisher')
-    self.book.number_of_copy = safe_unicode('10')
+    self.book.number_of_copy = 10
 
     self.school.reindexObject()
 
@@ -240,3 +240,14 @@ class TestBookReviewBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
 
         super(TestBookReviewBrowser, self).tearDown()
 
+
+def test_suite():
+    """
+    :return:
+    """
+    suite = unittest.TestSuite()
+
+    suite.addTest(unittest.makeSuite(TestBookReview, prefix='test'))
+    suite.addTest(unittest.makeSuite(TestBookReviewBrowser, prefix='test'))
+
+    return suite

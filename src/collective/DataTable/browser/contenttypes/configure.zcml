@@ -20,7 +20,6 @@
 
   <adapter
     for="Products.CMFCore.interfaces.IFolderish
-         collective.DataTable.interfaces.ICollectiveDataTableLayer
          zope.publisher.interfaces.browser.IDefaultBrowserLayer
          plone.dexterity.interfaces.IDexterityFTI"
 
@@ -53,7 +52,6 @@
 
   <adapter
     for="Products.CMFCore.interfaces.IFolderish
-         collective.DataTable.interfaces.ICollectiveDataTableLayer
          zope.publisher.interfaces.browser.IDefaultBrowserLayer
          plone.dexterity.interfaces.IDexterityFTI"
 
@@ -86,7 +84,6 @@
 
   <adapter
     for="Products.CMFCore.interfaces.IFolderish
-         collective.DataTable.interfaces.ICollectiveDataTableLayer
          zope.publisher.interfaces.browser.IDefaultBrowserLayer
          plone.dexterity.interfaces.IDexterityFTI"
 
@@ -105,7 +102,7 @@
   <!-- collective.DataTable.Book content type Start -->
   <browser:page
     for="collective.DataTable.contenttypes.book.IBook"
-    name="edit"
+    name="edit_on"
     class=".book.BookEditView"
     permission="cmf.ModifyPortalContent"
   />
@@ -119,7 +116,6 @@
 
   <adapter
     for="Products.CMFCore.interfaces.IFolderish
-         collective.DataTable.interfaces.ICollectiveDataTableLayer
          zope.publisher.interfaces.browser.IDefaultBrowserLayer
          plone.dexterity.interfaces.IDexterityFTI"
 
@@ -152,7 +148,6 @@
 
   <adapter
     for="Products.CMFCore.interfaces.IFolderish
-         collective.DataTable.interfaces.ICollectiveDataTableLayer
          zope.publisher.interfaces.browser.IDefaultBrowserLayer
          plone.dexterity.interfaces.IDexterityFTI"
 
@@ -185,7 +180,6 @@
 
   <adapter
     for="Products.CMFCore.interfaces.IFolderish
-         collective.DataTable.interfaces.ICollectiveDataTableLayer
          zope.publisher.interfaces.browser.IDefaultBrowserLayer
          plone.dexterity.interfaces.IDexterityFTI"
 

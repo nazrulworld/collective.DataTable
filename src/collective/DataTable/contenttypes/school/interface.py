@@ -4,7 +4,7 @@ from .schema import SchoolSchema
 __author__ = 'Md Nazrul Islam<connect2nazrul@gmail.com>'
 
 
-class ISchool(Interface, SchoolSchema):
+class ISchool(SchoolSchema, Interface):
     """
     """
 

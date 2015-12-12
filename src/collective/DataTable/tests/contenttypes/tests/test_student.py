@@ -7,6 +7,7 @@ try:
 except ImportError:
     import unittest
 import transaction
+from bs4 import BeautifulSoup
 from Products.CMFCore.utils import getToolByName
 
 from plone import api
@@ -154,7 +155,7 @@ class TestStudentBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
         _resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources')
         _id = safe_unicode('test-first-name')
         _first_name = safe_unicode('Test First Name')
-        _last_name  = safe_unicode('Last')
+        _last_name = safe_unicode('Last')
         _gender = safe_unicode('male')
         _roll_number = safe_unicode('1001')
         _grade = safe_unicode('g4')
@@ -204,6 +205,77 @@ class TestStudentBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
         self.assertEqual(student.roll_number, int(_roll_number))
         self.assertEqual(_first_name + ' ' + _last_name, student.Title)
 
+    def test_unique_roll_number(self):
+
+        """
+        :return:
+        """
+        _id = self.school.generateUniqueId(CONTENT_TYPE_STUDENT)
+        _first_name = safe_unicode('Test First Name')
+        _last_name = safe_unicode('Last')
+        _gender = safe_unicode('male')
+        _roll_number = safe_unicode('1001')
+        _grade = safe_unicode('g4')
+        _contact_number = safe_unicode('980000000')
+
+        _url = self.school.absolute_url() + '/++add++' + CONTENT_TYPE_STUDENT
+        self.browser.open(_url)
+
+        try:
+            form = self.browser.getForm(id='form')
+
+        except LookupError as exc:
+
+            if not self.browser.cookies.get('__ac', None):
+
+                self.browser_login()
+                form = self.browser.getForm(id='form')
+            else:
+                raise LookupError(exc.message)
+
+        # Fill the form
+        form.getControl(name='form.widgets.first_name').value = _first_name
+        form.getControl(name='form.widgets.last_name').value = _last_name
+        form.getControl(name='form.widgets.gender:list').value = (_gender, )
+        form.getControl(name='form.widgets.roll_number').value = _roll_number
+        form.getControl(name='form.widgets.grade:list').value = (_grade, )
+        form.getControl(name='form.widgets.contact_number').value = _contact_number
+
+        form.getControl(name='form.widgets.IShortName.id').value = _id
+        form.getControl(name='form.widgets.IExcludeFromNavigation.exclude_from_nav:list').value = 1
+        form.getControl(name='form.widgets.INextPreviousToggle.nextPreviousEnabled:list').value = 1
+
+        form.submit(form.getControl(name='form.buttons.save').value)
+
+        _id = self.school.generateUniqueId(CONTENT_TYPE_STUDENT)
+        self.browser.open(_url)
+        # Fill the form again
+        form = self.browser.getForm(id='form')
+        form.getControl(name='form.widgets.first_name').value = _first_name
+        form.getControl(name='form.widgets.last_name').value = _last_name
+        form.getControl(name='form.widgets.gender:list').value = (_gender, )
+        form.getControl(name='form.widgets.roll_number').value = _roll_number
+        form.getControl(name='form.widgets.grade:list').value = (_grade, )
+        form.getControl(name='form.widgets.contact_number').value = _contact_number
+
+        form.getControl(name='form.widgets.IShortName.id').value = _id
+        form.getControl(name='form.widgets.IExcludeFromNavigation.exclude_from_nav:list').value = 1
+        form.getControl(name='form.widgets.INextPreviousToggle.nextPreviousEnabled:list').value = 1
+
+        form.submit(form.getControl(name='form.buttons.save').value)
+
+        self.assertNotEqual(self.school.absolute_url() + '/' + _id + '/view', self.browser.url,
+                            'Current URL should not be default view, as validation error.')
+
+        html_output = BeautifulSoup(self.browser.contents.strip('\n'), 'lxml')
+        roll_container = html_output.find('div', id='formfield-form-widgets-roll_number')
+
+        error = roll_container.find('div', class_='fieldErrorBox').find('div', class_='error')
+
+        # We make sure error message shown.
+        self.assertIsNotNone(error)
+        self.assertTrue(0 < len(error.text))
+
     def tearDown(self):
         """
         :return:
@@ -216,3 +288,14 @@ class TestStudentBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
 
         super(TestStudentBrowser, self).tearDown()
 
+
+def test_suite():
+    """
+    :return:
+    """
+    suite = unittest.TestSuite()
+
+    suite.addTest(unittest.makeSuite(TestStudent, prefix='test'))
+    suite.addTest(unittest.makeSuite(TestStudentBrowser, prefix='test'))
+
+    return suite

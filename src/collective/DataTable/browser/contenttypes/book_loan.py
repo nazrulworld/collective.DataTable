@@ -6,12 +6,10 @@ __author__ = "Md Nazrul Islam<connect2nazrul@gmail.com>"
 
 
 class BookLoanAddView(AddView):
-
     pass
 
 
 class BookLoanEditView(EditView):
-
     pass
 
 

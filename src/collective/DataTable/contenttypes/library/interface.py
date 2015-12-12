@@ -5,7 +5,7 @@ from .schema import LibrarySchema
 __author__ = 'Md Nazrul Islam<connect2nazrul@gmail.com>'
 
 
-class ILibrary(Interface, LibrarySchema):
+class ILibrary(LibrarySchema, Interface):
 
     """
     """

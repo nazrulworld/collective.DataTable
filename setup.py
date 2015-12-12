@@ -52,8 +52,9 @@ setup(
         'plone.namedfile',
         'plone.formwidget.namedfile',
         'collective.vdexvocabulary',
-        'collective.dexteritytextindexer',
         'plone.directives.form',
+        'lxml',
+        'beautifulsoup4',
     ],
     extras_require={
         'test': [

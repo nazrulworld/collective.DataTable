@@ -6,7 +6,7 @@ from .schema import BookLoanSchema
 __author__ = 'Md Nazrul Islam<connect2nazrul@gmail.com>'
 
 
-class IBookLoan(Interface, BookLoanSchema):
+class IBookLoan(BookLoanSchema, Interface):
 
     """
     """

@@ -16,7 +16,15 @@ class AddView(DefaultAddView):
     """
     """
     form = AddForm
-    portal_type = 'collective.DataTable.BookReview'
+
+    def __init__(self, context, request, ti=None):
+        """
+        :param context:
+        :param request:
+        :param ti:
+        :return:
+        """
+        super(AddView, self).__init__(context, request, ti)
 
 
 class EditView(DefaultEditView):
@@ -24,7 +32,6 @@ class EditView(DefaultEditView):
     """
     """
     form = EditForm
-    portal_type = 'collective.DataTable.BookReview'
 
 
 class DefaultView(view.DefaultView):

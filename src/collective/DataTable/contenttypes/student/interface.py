@@ -16,7 +16,7 @@ class DuplicateRollNumberValidationError(Invalid):
     __doc__ = _('The specified roll number is already exists!')
 
 
-class IStudent(Interface, StudentSchema):
+class IStudent(StudentSchema, Interface):
     """
     """
 

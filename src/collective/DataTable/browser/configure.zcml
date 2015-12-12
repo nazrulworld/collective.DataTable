@@ -17,5 +17,5 @@
       directory="static"
       />
 
-  <include package=".contenttypes" file="configure.zcml" />
+  <include package=".contenttypes" />
 </configure>

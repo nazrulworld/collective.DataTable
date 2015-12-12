@@ -7,6 +7,7 @@ try:
 except ImportError:
     import unittest
 import transaction
+from bs4 import BeautifulSoup
 from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 from zope.intid.interfaces import IIntIds
@@ -24,7 +25,7 @@ from collective.DataTable.contenttypes.book_loan import IBookLoan
 from collective.DataTable.testing import (COLLECTIVE_DATATABLE_INTEGRATION_TESTING,
                                           COLLECTIVE_DATATABLE_FUNCTIONAL_TESTING)
 from collective.DataTable.testing import CollectiveDataTableBrowserMixin
-from collective.DataTable.testing import (
+from collective.DataTable.constrains import (
     CONTENT_TYPE_SCHOOL,
     CONTENT_TYPE_BOOK,
     CONTENT_TYPE_LIBRARY,
@@ -63,16 +64,6 @@ def init_fixture(self, commit=False):
     self.library = self.school['library']
     self.library.setTitle('My Test Library')
 
-    self.library.invokeFactory(CONTENT_TYPE_BOOK, 'book')
-    self.book = self.library['book']
-    self.book.setTitle('My Test Book')
-
-    self.book.details = safe_unicode('<h1>Test Book Details</h1>')
-    self.book.isbn = safe_unicode('98-999-99-9999')
-    self.book.author = safe_unicode('Test Author')
-    self.book.publisher = safe_unicode('Test Publisher')
-    self.book.number_of_copy = safe_unicode('10')
-
     self.school.reindexObject()
 
     if commit:
@@ -99,6 +90,21 @@ class TestBookLoan(unittest.TestCase):
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
         init_fixture(self)
+        self._book_structure()
+
+    def _book_structure(self):
+        """
+        :return:
+        """
+        self.library.invokeFactory(CONTENT_TYPE_BOOK, 'book')
+        self.book = self.library['book']
+        self.book.setTitle('My Test Book')
+
+        self.book.details = safe_unicode('<h1>Test Book Details</h1>')
+        self.book.isbn = safe_unicode('98-999-99-9999')
+        self.book.author = safe_unicode('Test Author')
+        self.book.publisher = safe_unicode('Test Publisher')
+        self.book.number_of_copy = safe_unicode('2')
 
     def test_schema(self):
         """
@@ -173,8 +179,14 @@ class TestBookLoan(unittest.TestCase):
 
             raise AssertionError("This code should not reach here!, Globally not allowed this content type.")
 
+    def test_book_stock_validator(self):
+        """
+        :return:
+        """
+        pass
 
-class TestBookReviewBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
+
+class TestBookLoanBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
 
     """
     """
@@ -194,8 +206,60 @@ class TestBookReviewBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
         init_fixture(self, True)
-
         self.browser = Browser(self.layer['app'])
+
+        self._book_structure()
+
+    def _book_structure(self):
+        """
+        :return:
+        """
+        _resource_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resources')
+        _id = safe_unicode('book')
+        _title = safe_unicode('Test First Book')
+        _description = safe_unicode('The test description')
+        _details = safe_unicode('<h1>Test Book Details</h1>')
+        _isbn = safe_unicode('ISBN 978-0-306-40615-7')
+        _author = safe_unicode('Test Author')
+        _publisher = safe_unicode('Test Publisher')
+        _number_of_copy = safe_unicode('2')
+        _cover_photo = 'book.jpg'
+
+        _url = self.library.absolute_url() + '/++add++' + CONTENT_TYPE_BOOK
+        self.browser.open(_url)
+
+        try:
+            form = self.browser.getForm(id='form')
+
+        except LookupError as exc:
+
+            if not self.browser.cookies.get('__ac', None):
+
+                self.browser_login()
+                form = self.browser.getForm(id='form')
+            else:
+                raise LookupError(exc.message)
+
+        # Fill the form
+        form.getControl(name='form.widgets.title').value = _title
+        form.getControl(name='form.widgets.description').value = _description
+        form.getControl(name='form.widgets.isbn').value = _isbn
+        form.getControl(name='form.widgets.details').value = _details
+        form.getControl(name='form.widgets.publisher').value = _publisher
+        form.getControl(name='form.widgets.author').value = _author
+        form.getControl(name='form.widgets.number_of_copy').value = _number_of_copy
+
+        form.getControl(name='form.widgets.IShortName.id').value = _id
+        form.getControl(name='form.widgets.IExcludeFromNavigation.exclude_from_nav:list').value = 1
+        form.getControl(name='form.widgets.INextPreviousToggle.nextPreviousEnabled:list').value = 1
+
+        image_control = form.getControl(name='form.widgets.cover_photo')
+        image_control.add_file(open(os.path.join(_resource_path, _cover_photo), 'rb'), 'image/jpeg', _cover_photo)
+
+        form.submit(form.getControl(name='form.buttons.save').value)
+
+        book = self.portal.portal_catalog.searchResults(portal_type=CONTENT_TYPE_BOOK, id=_id)[0]
+        self.book = book.getObject()
 
     def test_adding_by_browser(self):
 
@@ -228,7 +292,6 @@ class TestBookReviewBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
         form.getControl(name='form.widgets.IShortName.id').value = _id
         form.getControl(name='form.widgets.IExcludeFromNavigation.exclude_from_nav:list').value = 1
         form.getControl(name='form.widgets.INextPreviousToggle.nextPreviousEnabled:list').value = 1
-
         form.submit(form.getControl(name='form.buttons.save').value)
         self.assertEqual(self.book.absolute_url() + '/' + _id + '/view', self.browser.url,
                          'Current URL should be default view for newly created loan')
@@ -242,6 +305,61 @@ class TestBookReviewBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
         self.assertFalse(loan.getObject().is_lock)
         self.assertEqual(self.book.number_of_loan_copy, 1)
 
+        book = self.portal.portal_catalog.searchResults(portal_type=CONTENT_TYPE_BOOK, id=self.book.getId())[0]
+
+        # Book stock should be decreased
+        self.assertEqual(book.book_stock, 1)
+        self.assertEqual(book.getObject().number_of_copy, 2)
+
+    def test_book_stock_validator(self):
+        """
+        :return:
+        """
+        self.book.number_of_loan_copy += 2
+        self.book.reindexObject()
+        transaction.commit()
+
+        _id = self.book.generateUniqueId(CONTENT_TYPE_BOOK_LOAN).replace('.', '-')
+
+        _url = self.book.absolute_url() + '/++add++' + CONTENT_TYPE_BOOK_LOAN
+        self.browser.open(_url)
+
+        try:
+            form = self.browser.getForm(id='form')
+
+        except LookupError as exc:
+
+            if not self.browser.cookies.get('__ac', None):
+
+                self.browser_login()
+                form = self.browser.getForm(id='form')
+            else:
+                raise LookupError(exc.message)
+
+        # Fill the form
+
+        form.getControl(name='form.widgets.book').value = self.book.UID()
+        form.getControl(name='form.widgets.student').value = self.student.UID()
+        form.getControl(name='form.widgets.loan_duration:list').value = ['2']
+
+        form.getControl(name='form.widgets.IShortName.id').value = _id
+        form.getControl(name='form.widgets.IExcludeFromNavigation.exclude_from_nav:list').value = 1
+        form.getControl(name='form.widgets.INextPreviousToggle.nextPreviousEnabled:list').value = 1
+        form.submit(form.getControl(name='form.buttons.save').value)
+        self.assertNotEqual(
+            self.book.absolute_url() + '/' + _id + '/view',
+            self.browser.url,
+            'Current URL should not be default view, because of validation error.')
+
+        html_output = BeautifulSoup(self.browser.contents.strip('\n'), 'lxml')
+        portal_message = html_output.find('dl', class_='portalMessage')
+
+        error = portal_message.find('dt')
+
+        # We make sure error message shown.
+        self.assertIsNotNone(error)
+        self.assertTrue(0 < len(error.text))
+
     def tearDown(self):
         """
         :return:
@@ -251,5 +369,16 @@ class TestBookReviewBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
         if len(error_log.getLogEntries()):
             print error_log.getLogEntries()[-1]['tb_text']
 
-        super(TestBookReviewBrowser, self).tearDown()
+        super(TestBookLoanBrowser, self).tearDown()
 
+
+def test_suite():
+    """
+    :return:
+    """
+    suite = unittest.TestSuite()
+
+    suite.addTest(unittest.makeSuite(TestBookLoan, prefix='test'))
+    suite.addTest(unittest.makeSuite(TestBookLoanBrowser, prefix='test'))
+
+    return suite

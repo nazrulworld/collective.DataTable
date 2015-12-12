@@ -7,7 +7,7 @@ from .schema import BookSchema
 __author__ = 'Md Nazrul Islam<connect2nazrul@gmail.com>'
 
 
-class IBook(Interface, BookSchema):
+class IBook(BookSchema, Interface):
 
     """
     """

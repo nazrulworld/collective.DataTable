@@ -17,6 +17,8 @@ from zope.component import (queryUtility, createObject)
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.utils import safe_unicode
 
+from bs4 import BeautifulSoup
+
 from collective.DataTable.contenttypes.book import IBook
 from collective.DataTable.contenttypes.book.interface import book_stock
 from collective.DataTable.testing import (COLLECTIVE_DATATABLE_INTEGRATION_TESTING,
@@ -383,7 +385,59 @@ class TestBookBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
         # Test Indexer
         self.assertEqual(book_stock(book.getObject())(), book.book_stock)
 
+        # Test Default value
+        self.assertEqual(book.getObject().number_of_loan_copy, 0)
+
         self.assertEqual(int(book.getObject().number_of_copy), int(_number_of_copy))
+
+    def test_invalid_ssn(self):
+        """
+        :return:
+        """
+        _id = safe_unicode('test-first-book')
+        _title = safe_unicode('Test First Book')
+        _description = safe_unicode('The test description')
+        _isbn = safe_unicode('ISBN 978-0-3-0-40615-7')
+        _number_of_copy = safe_unicode('10')
+
+        _url = self.library.absolute_url() + '/++add++' + CONTENT_TYPE_BOOK
+        self.browser.open(_url)
+
+        try:
+            form = self.browser.getForm(id='form')
+
+        except LookupError as exc:
+
+            if not self.browser.cookies.get('__ac', None):
+
+                self.browser_login()
+                form = self.browser.getForm(id='form')
+            else:
+                raise LookupError(exc.message)
+
+        # Fill the form
+        form.getControl(name='form.widgets.title').value = _title
+        form.getControl(name='form.widgets.description').value = _description
+        form.getControl(name='form.widgets.isbn').value = _isbn
+        form.getControl(name='form.widgets.number_of_copy').value = _number_of_copy
+
+        form.getControl(name='form.widgets.IShortName.id').value = _id
+
+        form.submit(form.getControl(name='form.buttons.save').value)
+
+        self.assertEqual(self.library.absolute_url() + '/++add++' + CONTENT_TYPE_BOOK, self.browser.url,
+                         'Current URL should be same as add url `++add++%s`, because of validation error'
+                         % CONTENT_TYPE_BOOK)
+
+        html_output = BeautifulSoup(self.browser.contents.strip('\n'), 'lxml')
+        isbn_container = html_output.find('div', id='formfield-form-widgets-isbn')
+
+        error = isbn_container.find('div', class_='fieldErrorBox').find('div', class_='error')
+
+        # We make sure error message shown.
+        self.assertIsNotNone(error)
+        # We make sure `ISBN` related message
+        self.assertIn('isbn', error.text.lower())
 
     def tearDown(self):
         """

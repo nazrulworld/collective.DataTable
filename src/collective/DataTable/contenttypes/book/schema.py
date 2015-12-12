@@ -53,7 +53,8 @@ class BookSchema(model.Schema):
 
     number_of_loan_copy = schema.Int(
         title=_("Number of Loan"),
-        required=False
+        required=False,
+        default=0
     )
     form.omitted('number_of_loan_copy')
 

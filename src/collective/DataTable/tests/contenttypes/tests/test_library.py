@@ -221,3 +221,14 @@ class TestLibraryBrowser(unittest.TestCase, CollectiveDataTableBrowserMixin):
             print error_log.getLogEntries()[-1]['tb_text']
 
         super(TestLibraryBrowser, self).tearDown()
+
+def test_suite():
+    """
+    :return:
+    """
+    suite = unittest.TestSuite()
+
+    suite.addTest(unittest.makeSuite(TestLibrary, prefix='test'))
+    suite.addTest(unittest.makeSuite(TestLibraryBrowser, prefix='test'))
+
+    return suite

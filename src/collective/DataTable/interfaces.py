@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Module where all interfaces, events and exceptions live."""
+import zope.deferredimport
 
 from collective.DataTable import _
 from zope import schema
@@ -11,15 +12,39 @@ class ICollectiveDataTableLayer(IDefaultBrowserLayer):
     """Marker interface that defines a browser layer."""
 
 
-class IConfiguration(Interface):
-
-    title = schema.TextLine(
-        title=_(u"Title"),
-        required=True,
-    )
-
-    description = schema.Text(
-        title=_(u"Description"),
-        required=False,
-    )
+# Import Addons Configuration
+zope.deferredimport.defineFrom(
+    'collective.DataTable.controlpanel.interfaces',
+    'IConfiguration'
+)
+# Import School Interface
+zope.deferredimport.defineFrom(
+    'collective.DataTable.contenttypes.school.interface',
+    'ISchool',
+)
+# Import Library Interface
+zope.deferredimport.defineFrom(
+    'collective.DataTable.contenttypes.library.interface',
+    'ILibrary'
+)
+# Import Student Interface
+zope.deferredimport.defineFrom(
+    'collective.DataTable.contenttypes.student.interface',
+    'IStudent'
+)
+# Import Book Interface
+zope.deferredimport.defineFrom(
+    'collective.DataTable.contenttypes.book.interface',
+    'IBook'
+)
+# Import Book Loan Interface
+zope.deferredimport.defineFrom(
+    'collective.DataTable.contenttypes.book_loan.interface',
+    'IBookLoan'
+)
+# Import Book Review Interface
+zope.deferredimport.defineFrom(
+    'collective.DataTable.contenttypes.book_review.interface',
+    'IBookReview'
+)
 

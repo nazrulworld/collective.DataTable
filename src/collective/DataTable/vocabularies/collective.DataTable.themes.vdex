@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex language="en" orderSignificant="true" xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0">
+    <vocabIdentifier>collective_DataTable_themes</vocabIdentifier>
+    <term>
+        <termIdentifier>classic</termIdentifier>
+        <caption>
+            <langstring language="en">Classic Theme</langstring>
+            <langstring language="da">Classic Thema</langstring>
+            <langstring language="bn">ক্লাসিক থিম</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>twb</termIdentifier>
+        <caption>
+            <langstring language="en">Twitter Bootstrap</langstring>
+            <langstring language="da">Twitter Bootstrap</langstring>
+            <langstring language="bn">টুইটার বুটস্ট্র্যাপ </langstring>
+        </caption>
+    </term>
+</vdex>

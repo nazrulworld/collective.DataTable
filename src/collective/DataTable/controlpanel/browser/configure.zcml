@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.DataTable">
+
+  <!-- Data Table Control Panel -->
+  <browser:page
+    name="datatable-controlpanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".data_table.DataTableControlPanel"
+    permission="cmf.ManagePortal"
+    />
+</configure>

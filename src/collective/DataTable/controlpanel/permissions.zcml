@@ -1,0 +1,39 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <permission id="collective.DataTable.controlpanel.View"
+              title="DataTable View Control Panel">
+    <role name="Manager"/>
+    <role name="Site Administrator"/>
+  </permission>
+
+  <permission id="collective.DataTable.controlpanel.Administrator"
+              title="DataTable Control Panel Administrator">
+    <role name="Manager"/>
+    <role name="Site Administrator"/>
+  </permission>
+
+  <permission id="collective.DataTable.controlpanel.ViewQuery"
+              title="DataTable Only Query Viewer">
+    <role name="Manager"/>
+    <role name="Site Administrator"/>
+  </permission>
+
+  <permission id="collective.DataTable.controlpanel.CreateQuery"
+              title="DataTable Query Create">
+    <role name="Manager"/>
+    <role name="Site Administrator"/>
+  </permission>
+
+  <permission id="collective.DataTable.controlpanel.ModifyQuery"
+              title="DataTable Query Modify">
+    <role name="Manager"/>
+    <role name="Site Administrator"/>
+  </permission>
+
+  <permission id="collective.DataTable.controlpanel.ModifyTheme"
+              title="DataTable Theme Modify">
+    <role name="Manager"/>
+    <role name="Site Administrator"/>
+  </permission>
+
+</configure>

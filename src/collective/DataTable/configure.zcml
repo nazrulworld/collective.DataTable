@@ -15,6 +15,7 @@
     <vdex:vocabulary directory="vocabularies" />
 
     <include package=".browser" />
+    <include package=".controlpanel" />
     <include  file="events.zcml" />
     <include  file="validators.zcml" />
 
@@ -47,6 +48,7 @@
       description="Import step run during ininstalling collective.DataTable"
       handler=".setuphandlers.uninstall">
   </genericsetup:importStep>
+  <!-- Indexer Adapters -->
   <adapter name="book_stock" factory=".contenttypes.book.interface.book_stock" />
   <utility
       factory=".setuphandlers.HiddenProfiles"

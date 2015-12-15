@@ -2,7 +2,7 @@
 from zope.interface import implements
 from plone.dexterity.content import Container
 
-from .interface import ILibrary
+from collective.DataTable.interfaces import ILibrary
 
 __author__ = 'Md Nazrul Islam<connect2nazrul@gmail.com>'
 
@@ -13,5 +13,5 @@ class Library(Container):
     """
     implements(ILibrary)
 
-__all__ = ('Library', 'ILibrary', )
+__all__ = ('Library', )
 

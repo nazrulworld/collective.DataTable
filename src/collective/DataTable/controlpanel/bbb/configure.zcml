@@ -1,0 +1,9 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <adapter
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    factory=".data_table.DataTableControlPanelAdapter"
+    provides="collective.DataTable.interfaces.IConfiguration"
+  />
+
+</configure>

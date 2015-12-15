@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="collective.DataTable" purge="False">
+  <configlet
+      action_id="DataTable"
+      appId="collective.DataTable"
+      category="Products"
+      condition_expr=""
+      icon_expr="string:$portal_url/document_icon.png"
+      title="DataTable Configuration"
+      url_expr="string:${portal_url}/@@datatable-controlpanel"
+      visible="True"
+      i18n:attributes="title">
+    <permission>Manage portal</permission>
+  </configlet>
+</object>

@@ -16,6 +16,10 @@
       name="collective.DataTable"
       directory="static"
       />
+  <browser:resourceDirectory
+      name="collective.DataTable.DT"
+      directory="static/DataTables-1.10.9"
+      />
 
   <include package=".contenttypes" />
 </configure>

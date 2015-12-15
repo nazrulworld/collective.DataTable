@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # ++ This file `validators.py` is generated at 11/22/15 5:36 PM ++
 import re
-from Acquisition import aq_base, aq_inner
+from Acquisition import aq_inner
 from plone.api.portal import get as getSite
 from zope.interface import implementer, Invalid
 from Products.CMFCore.utils import getToolByName
@@ -9,10 +9,10 @@ from z3c.form import interfaces
 from z3c.form.validator import SimpleFieldValidator
 
 from .vocabularies import load_vocabulary
-from . import _
-from .contenttypes.book.interface import IBook
-from .contenttypes.school.interface import ISchool
-from .contenttypes.library.interface import ILibrary
+from collective.DataTable import _
+# from .contenttypes.book.interface import IBook
+# from .contenttypes.school.interface import ISchool
+# from .contenttypes.library.interface import ILibrary
 
 from .constrains import CONTENT_TYPE_BOOK, CONTENT_TYPE_SCHOOL, CONTENT_TYPE_STUDENT, CONTENT_TYPE_LIBRARY
 
@@ -103,7 +103,7 @@ class UniqueISBNValidator(SimpleFieldValidator):
         super(UniqueISBNValidator, self).validate(value, force)
 
         library = aq_base(self.context)
-        assert ILibrary.providedBy(library), _('Context must be derived from content type `%s`' % CONTENT_TYPE_LIBRARY)
+        # assert ILibrary.providedBy(library), _('Context must be derived from content type `%s`' % CONTENT_TYPE_LIBRARY)
 
         portal_catalog = getToolByName(getSite(), 'portal_catalog')
         result = portal_catalog.searchResults(
@@ -130,7 +130,7 @@ class UniqueRollNumberValidator(SimpleFieldValidator):
         super(UniqueRollNumberValidator, self).validate(value, force)
         # Custom validation here
         school = aq_inner(self.context)
-        assert ISchool.providedBy(school), _('Context must be derived from content type `%s`' % CONTENT_TYPE_SCHOOL)
+        # assert ISchool.providedBy(school), _('Context must be derived from content type `%s`' % CONTENT_TYPE_SCHOOL)
 
         grade_widget = self.widget.form.widgets['grade']
         portal_catalog = getToolByName(getSite(), 'portal_catalog')
@@ -170,8 +170,8 @@ class BookStockValidator(object):
         :param force:
         :return:
         """
-        assert IBook.providedBy(aq_base(self.context)), _('Context must be derived from content type `%s`'
-                                                          % CONTENT_TYPE_BOOK)
+        # assert IBook.providedBy(aq_base(self.context)), _('Context must be derived from content type `%s`'
+        #                                                  % CONTENT_TYPE_BOOK)
 
         portal_catalog = getToolByName(getSite(), 'portal_catalog')
         book = portal_catalog.searchResults(path='/'.join(self.context.getPhysicalPath()), id=self.context.getId(),

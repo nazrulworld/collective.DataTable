@@ -19,27 +19,6 @@ class DuplicateRollNumberValidationError(Invalid):
 class IStudent(StudentSchema, Interface):
     """
     """
-
-    @invariant
-    def duplicate_roll_number_validate(self):
-
-        """
-        :return:
-        """
-        obj = aq_inner(self)
-        return None
-        portal_catalog = getToolByName(obj, 'portal_catalog')
-
-        brains = portal_catalog.searchResults(
-            object_provides=IStudent.__identifier__,
-            path='/'.join(obj.aq_parent.getPhysicalPath()),
-            grade=obj.grade,
-            roll_number=obj.roll_number
-        )
-
-        if len(brains):
-
-            raise DuplicateRollNumberValidationError(_('The specified roll number `%s` is already exists!' %
-                                                       obj.roll_number))
+    pass
 
 __all__ = ("IStudent", )

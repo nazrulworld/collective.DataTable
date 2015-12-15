@@ -4,7 +4,7 @@ from zope.interface import implements
 from z3c.form import validator
 from plone.dexterity.content import Container
 
-from .interface import IStudent
+from collective.DataTable.interfaces import IStudent
 from collective.DataTable.validators import UniqueRollNumberValidator
 
 __author__ = 'Md Nazrul Islam<connect2nazrul@gmail.com>'
@@ -26,5 +26,5 @@ class Student(Container):
 # Make sure Unique Roll Number
 validator.WidgetValidatorDiscriminators(UniqueRollNumberValidator, field=IStudent['roll_number'])
 
-__all__ = ("Student", "IStudent", )
+__all__ = ("Student", )
 

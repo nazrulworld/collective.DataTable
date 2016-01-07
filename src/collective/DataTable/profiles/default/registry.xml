@@ -1,5 +1,21 @@
 <?xml version="1.0"?>
 <registry>
-  <records interface="collective.DataTable.interfaces.IConfiguration"
-           prefix="collective.DataTable" />
+  <records interface="collective.DataTable.interfaces.IConfiguration" prefix="collective.DataTable" />
+  <records prefix="collective.DataTable.DT/data-table"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+
+    <value key="js">++resource++collective.DataTable.DT/js/jquery.dataTables.js</value>
+    <value key="css">
+      <element>++resource++collective.DataTable.DT/css/jquery.dataTables.css</element>
+    </value>
+  </records>
+  <records prefix="collective.DataTable.DT/data-table-bootstrap"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+
+    <value key="js">++resource++collective.DataTable.DT/js/dataTables.bootstrap.js</value>
+    <value key="css">
+      <element>++resource++collective.DataTable.DT/css/dataTables.bootstrap.css</element>
+    </value>
+  </records>
+
 </registry>

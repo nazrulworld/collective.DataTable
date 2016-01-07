@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdex language="en" orderSignificant="true" xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0">
+    <vocabIdentifier>collective_DataTable_records_per_page</vocabIdentifier>
+    <term>
+        <termIdentifier>10</termIdentifier>
+        <caption>
+            <langstring language="en">10</langstring>
+            <langstring language="da">10</langstring>
+            <langstring language="bn">১০</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>20</termIdentifier>
+        <caption>
+            <langstring language="en">20</langstring>
+            <langstring language="da">20</langstring>
+            <langstring language="bn">২০</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>30</termIdentifier>
+        <caption>
+            <langstring language="en">30</langstring>
+            <langstring language="da">30</langstring>
+            <langstring language="bn">৩০</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>50</termIdentifier>
+        <caption>
+            <langstring language="en">50</langstring>
+            <langstring language="da">50</langstring>
+            <langstring language="bn">৫০</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>100</termIdentifier>
+        <caption>
+            <langstring language="en">100</langstring>
+            <langstring language="da">100</langstring>
+            <langstring language="bn">১০০</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>200</termIdentifier>
+        <caption>
+            <langstring language="en">200</langstring>
+            <langstring language="da">200</langstring>
+            <langstring language="bn">২০০</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>300</termIdentifier>
+        <caption>
+            <langstring language="en">300</langstring>
+            <langstring language="da">300</langstring>
+            <langstring language="bn">৩০০</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>400</termIdentifier>
+        <caption>
+            <langstring language="en">400</langstring>
+            <langstring language="da">400</langstring>
+            <langstring language="bn">৪০০</langstring>
+        </caption>
+    </term>
+    <term>
+        <termIdentifier>500</termIdentifier>
+        <caption>
+            <langstring language="en">500</langstring>
+            <langstring language="da">500</langstring>
+            <langstring language="bn">৫০০</langstring>
+        </caption>
+    </term>
+</vdex>

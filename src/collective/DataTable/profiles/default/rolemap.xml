@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <permission name="collective.DataTable.controlpanel: View"
+                acquire="False">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+    </permission>
+    <permission name="collective.DataTable.controlpanel: Administrator"
+                acquire="False">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+    </permission>
+    <permission name="collective.DataTable.controlpanel:  ViewQuery"
+                acquire="False">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+    </permission>
+    <permission name="collective.DataTable.controlpanel: CreateQuery"
+                acquire="False">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+    </permission>
+    <permission name="collective.DataTable.controlpanel: ModifyQuery"
+                acquire="False">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+    </permission>
+    <permission name="collective.DataTable.controlpanel: ModifyTheme"
+                acquire="False">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+    </permission>
+  </permissions>
+</rolemap>

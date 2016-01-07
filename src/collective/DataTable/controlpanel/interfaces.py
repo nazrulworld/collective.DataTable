@@ -14,12 +14,41 @@ class IConfiguration(Interface):
     """
     model.fieldset(
         'settings',
-        label=_('Settings', default=u'Settings'),
-        fields=['use_site_language_pref', 'default_language', 'allowed_languages']
+        label=_(u'Settings', default=u'Settings'),
+        fields=[
+            'is_server_side_process',
+            'is_search_active',
+            'is_filter_active',
+            'is_sortable_active',
+            'use_site_language_pref',
+            'default_language',
+            'allowed_languages']
+    )
+
+    is_server_side_process = schema.Bool(
+        title=_(u"Active Server Process", default=u'Active Server Process'),
+        required=False,
+        default=False
+    )
+
+    is_search_active = schema.Bool(
+        title=_(u'Active Full Text Search', default=u'Active Full Text Search'),
+        required=False,
+        default=False
+    )
+
+    is_filter_active = schema.Bool(
+        title=_(u"Active Advanced Filter"),
+        required=False,
+
+    )
+
+    is_sortable_active = schema.Bool(
+        title=_(u"Active Sortable", default=u'Active Sortable')
     )
 
     use_site_language_pref = schema.Bool(
-        title=_("User Site Language Preference", default=u"User Site Language Preference"),
+        title=_(u"User Site Language Preference", default=u"User Site Language Preference"),
         required=False,
         default=False
     )
@@ -51,43 +80,53 @@ class IConfiguration(Interface):
 
     model.fieldset(
         'theming',
-        label=_("Theming", u"Theming"),
-        fields=['is_responsive', 'theme']
+        label=_(u"Theming", default="Theming"),
+        fields=['is_responsive', 'records_per_page', 'theme', 'custom_css']
     )
 
     is_responsive = schema.Bool(
-        title=_('Responsive Layout?', u'Responsive Layout?'),
+        title=_(u'Responsive Layout?', default=u'Responsive Layout?'),
         required=False,
         default=True
     )
 
+    records_per_page = schema.Choice(
+        title=_(u"Records Per Page", default=u'Records Per Page'),
+        default=u'50',
+        required=True,
+        vocabulary="collective_DataTable_records_per_page"
+    )
     theme = schema.Choice(
-        title=_("Choose Theme"),
+        title=_(u"Choose Theme", default=u"Choose Theme"),
         required=True,
         vocabulary="collective_DataTable_themes",
         default="classic"
     )
+    custom_css = schema.Text(
+        title=_(u"Custom CSS", default=u'Custom CSS'),
+        required=False,
+    )
 
     model.fieldset(
         'plugins',
-        label=_('Plugins', u"Plugins"),
+        label=_(u'Plugins', default=u"Plugins"),
         fields=['enable_search_highlight']
     )
 
     enable_search_highlight = schema.Bool(
-        title=_('Enable Search Highlighter', u'Enable Search Highlighter'),
+        title=_(u'Enable Search Highlighter', default=u'Enable Search Highlighter'),
         required=False,
         default=False
     )
 
     model.fieldset(
         'query_building',
-        label=_('Query Builder', default=u"Query Builder"),
+        label=_(u'Query Builder', default=u"Query Builder"),
         fields=['queries']
     )
 
     queries = schema.Dict(
-        title=_('Query', default=u'Queries'),
+        title=_(u'Query', default=u'Queries'),
         required=False,
         key_type=schema.TextLine(),
         value_type=schema.Text(required=False)

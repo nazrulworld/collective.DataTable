@@ -9,6 +9,6 @@
     name="datatable-controlpanel"
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
     class=".data_table.DataTableControlPanel"
-    permission="cmf.ManagePortal"
+    permission="collective.DataTable.controlpanel.Administrator"
     />
 </configure>

@@ -4,7 +4,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="collective.DataTable">
 
+  <include file="permissions.zcml" />
   <include package=".bbb" />
   <include package=".browser" />
-  <include file="permissions.zcml" />
 </configure>

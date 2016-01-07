@@ -27,6 +27,66 @@ class DataTableControlPanelAdapter(object):
         registry = getUtility(IRegistry)
         self.configurations = registry.forInterface(IConfiguration, prefix='collective.DataTable')
 
+    def _get_is_server_side_process(self):
+        """
+        :return:
+        """
+        return self.configurations.is_server_side_process
+
+    def _set_is_server_side_process(self, value):
+        """
+        :param value:
+        :return:
+        """
+        self.configurations.is_server_side_process = value
+
+    is_server_side_process = property(_get_is_server_side_process, _set_is_server_side_process)
+
+    def _get_is_search_active(self):
+        """
+        :return:
+        """
+        return self.configurations.is_search_active
+
+    def _set_is_search_active(self, value):
+        """
+        :param value:
+        :return:
+        """
+        self.configurations.is_search_active = value
+
+    is_search_active = property(_get_is_search_active, _set_is_search_active)
+
+    def _get_is_filter_active(self):
+        """
+        :return:
+        """
+        return self.configurations.is_filter_active
+
+    def _set_is_filter_active(self, value):
+        """
+        :param value:
+        :return:
+        """
+        self.configurations.is_filter_active = value
+
+    is_filter_active = property(_get_is_filter_active, _set_is_filter_active)
+
+    def _get_is_sortable_active(self):
+        """
+        :return:
+        """
+        return self.configurations.is_sortable_active
+
+    def _set_is_sortable_active(self, value):
+        """
+        :param value:
+        :return:
+        """
+        self.configurations.is_sortable_active = value
+
+    is_sortable_active = property(_get_is_sortable_active, _set_is_sortable_active)
+
     def _get_use_site_language_pref(self):
         """
         :return:
@@ -92,6 +152,22 @@ class DataTableControlPanelAdapter(object):
 
     is_responsive = property(_get_is_responsive, _set_is_responsive)
 
+    def _get_records_per_page(self):
+        """
+        :return:
+        """
+        return self.configurations.records_per_page
+
+    def _set_records_per_page(self, value):
+
+        """
+        :param value:
+        :return:
+        """
+        self.configurations.records_per_page = value
+
+    records_per_page = property(_get_records_per_page, _set_records_per_page)
+
     def _get_theme(self):
         """
         :return:
@@ -107,6 +183,22 @@ class DataTableControlPanelAdapter(object):
         self.configurations.theme = value
 
     theme = property(_get_theme, _set_theme)
+
+    def _get_custom_css(self):
+        """
+        :return:
+        """
+        return self.configurations.custom_css
+
+    def _set_custom_css(self, value):
+
+        """
+        :param value:
+        :return:
+        """
+        self.configurations.custom_css = value
+
+    custom_css = property(_get_custom_css, _set_custom_css)
 
     def _get_enable_search_highlight(self):
         """

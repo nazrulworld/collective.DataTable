@@ -1,39 +1,23 @@
 <configure xmlns="http://namespaces.zope.org/zope">
-
+  <!--
+   CUSTOM PERMISSIONS: http://docs.plone.org/develop/plone/security/custom_permissions.html
+  -->
   <permission id="collective.DataTable.controlpanel.View"
-              title="DataTable View Control Panel">
-    <role name="Manager"/>
-    <role name="Site Administrator"/>
-  </permission>
-
+              title="collective.DataTable.controlpanel: View"
+  />
   <permission id="collective.DataTable.controlpanel.Administrator"
-              title="DataTable Control Panel Administrator">
-    <role name="Manager"/>
-    <role name="Site Administrator"/>
-  </permission>
-
+              title="collective.DataTable.controlpanel: Administrator"
+  />
   <permission id="collective.DataTable.controlpanel.ViewQuery"
-              title="DataTable Only Query Viewer">
-    <role name="Manager"/>
-    <role name="Site Administrator"/>
-  </permission>
-
+              title="collective.DataTable.controlpanel:  ViewQuery"
+  />
   <permission id="collective.DataTable.controlpanel.CreateQuery"
-              title="DataTable Query Create">
-    <role name="Manager"/>
-    <role name="Site Administrator"/>
-  </permission>
-
+              title="collective.DataTable.controlpanel: CreateQuery"
+  />
   <permission id="collective.DataTable.controlpanel.ModifyQuery"
-              title="DataTable Query Modify">
-    <role name="Manager"/>
-    <role name="Site Administrator"/>
-  </permission>
-
+              title="collective.DataTable.controlpanel: ModifyQuery"
+  />
   <permission id="collective.DataTable.controlpanel.ModifyTheme"
-              title="DataTable Theme Modify">
-    <role name="Manager"/>
-    <role name="Site Administrator"/>
-  </permission>
-
+              title="collective.DataTable.controlpanel: ModifyTheme"
+  />
 </configure>

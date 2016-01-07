@@ -49,7 +49,6 @@ class CollectiveDataTableBrowserMixin(CollectiveDataTableMixin):
             raise ValueError(u"Login operation not success!, Please check manually.")
 
 
-
 class CollectiveDataTableLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
